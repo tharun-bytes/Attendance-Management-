@@ -1,288 +1,379 @@
-# 🎓 Student Attendance Management System Using Python & Data Science
+# 🎓 Student Attendance Management System
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io)
-[![Python Version](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Framework](https://img.shields.io/badge/Framework-Streamlit-red.svg)](https://streamlit.io/)
+![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-2.0%2B-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-1.24%2B-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-3.7%2B-11557C?style=for-the-badge&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-A complete, beginner-friendly, and interactive **Student Attendance Management System** developed using **Python, Pandas, NumPy, Matplotlib, and Streamlit**. 
+A beginner-friendly, locally-hosted **Student Attendance Management System** developed using **Python and core Data Science concepts**. 
 
-This system helps educators and academic institutions track daily attendance, automatically compute attendance percentages, identify students with attendance shortages below the mandatory 75% threshold, calculate exact recovery targets, edit student and attendance records, and visualize comprehensive academic insights through exploratory data analysis (EDA).
+This system helps educators, faculty, and institutions record daily student attendance, calculate attendance percentages automatically, identify attendance shortages below the mandatory 75% threshold, compute consecutive recovery targets, edit student and attendance records, and visualize actionable academic insights through interactive charts.
 
 ---
 
 ## 📌 Table of Contents
 
-1. [Project Overview](#-1-project-overview)
-2. [Technologies Used](#-2-technologies-used)
-3. [Key Features](#-3-key-features)
-4. [Data Science Principles Applied](#-4-data-science-principles-applied)
-5. [Project Architecture & Structure](#-5-project-architecture--structure)
-6. [Local Installation & Setup in VS Code](#-6-local-installation--setup-in-vs-code)
-7. [Deployment Guide (Streamlit Community Cloud)](#-7-deployment-guide-streamlit-community-cloud)
-8. [Automated Testing & Verification](#-8-automated-testing--verification)
-9. [Sample Data Specification](#-9-sample-data-specification)
-10. [License & Acknowledgements](#-10-license--acknowledgements)
+- [🌟 1. Project Overview](#-1-project-overview)
+- [🛠️ 2. Tools & Technologies Deep-Dive](#️-2-tools--technologies-deep-dive)
+  - [🔢 NumPy](#-numpy-numerical-computing--statistics)
+  - [🐼 Pandas](#-pandas-data-manipulation--pipelines)
+  - [📊 Matplotlib](#-matplotlib-data-visualization)
+  - [⚡ Streamlit](#-streamlit-interactive-user-interface)
+  - [🐍 Python](#-python-core-engine)
+  - [📄 CSV Files](#-csv-files-persistent-storage)
+- [🎯 3. Application Features](#-3-application-features)
+- [🔬 4. Data Science Principles in Action](#-4-data-science-principles-in-action)
+- [📂 5. Project Directory Structure](#-5-project-directory-structure)
+- [💻 6. Local Installation & Setup Guide (VS Code)](#-6-local-installation--setup-guide-vs-code)
+- [🧪 7. Automated Unit Testing](#-7-automated-unit-testing)
+- [📊 8. Sample Dataset Overview](#-8-sample-dataset-overview)
+- [📄 9. License](#-9-license)
 
 ---
 
 ## 🌟 1. Project Overview
 
-Traditional attendance registers are prone to manual calculation errors, lack instant visibility into attendance shortages, and offer no actionable academic analytics. 
+Manual attendance management using paper registers or simple spreadsheets is time-consuming, prone to human calculation errors, and fails to give educators immediate analytical insights.
 
-This project solves these challenges by combining:
-* **Interactive UI**: A Streamlit dashboard that enables educators to take and edit attendance with minimal clicks.
-* **Data Science Concepts**: Utilizing **Pandas** for robust data pipelines and deduplication, **NumPy** for descriptive statistics and vectorized calculations, and **Matplotlib** for publication-quality visual analytics.
-* **Persistent Lightweight Storage**: Relies on transparent, portable CSV files (`attendance_data.csv` and `students.csv`) without needing expensive or complex database servers.
+This application provides an **automated, offline-capable local desktop solution** built specifically around data science fundamentals:
+1. **Automated Analytics**: Instant computation of attendance percentages, class averages, standard deviation, and median attendance.
+2. **Shortage Warning (< 75%)**: Automatically tags students who fall below the university-standard 75% attendance criterion and calculates exactly how many future classes they must attend to recover.
+3. **Flexible Data Management**: Full ability to add students, modify student names, change roll numbers (IDs), update past attendance, or edit records in an interactive spreadsheet grid.
+4. **Visual Exploratory Analysis**: Generates publication-ready Matplotlib bar charts, department comparisons, eligibility donuts, and turnout trend lines.
+5. **Completely Local & Zero-Cost**: Runs 100% on your local machine using standard CSV storage—no paid APIs, no external database servers, and no cloud dependencies required.
 
 ---
 
-## 🛠️ 2. Technologies Used
+## 🛠️ 2. Tools & Technologies Deep-Dive
 
-| Technology | Role in System |
+This project demonstrates how standard Python data science libraries work together to build an end-to-end management pipeline:
+
+```
++---------------------------------------------------------------------------------+
+|                                APPLICATION STACK                                |
++---------------------------------------------------------------------------------+
+|  [ Presentation Layer ]  -->  Streamlit (GUI Dashboard, Forms & Data Editors)   |
+|  [ Visualization ]       -->  Matplotlib (Bar Charts, Donut Plots, Trend Lines) |
+|  [ Numerical Engine ]    -->  NumPy (Vectorized Calculations & Statistics)     |
+|  [ Data Pipeline ]       -->  Pandas (Cleaning, Grouping, Aggregation & Pivoting)|
+|  [ Storage Layer ]       -->  CSV Files (attendance_data.csv & students.csv)   |
++---------------------------------------------------------------------------------+
+```
+
+---
+
+### 🔢 NumPy (Numerical Computing & Statistics)
+
+**NumPy** serves as the mathematical and numerical foundation for all statistical analysis and conditional logic in the application.
+
+* **Vectorized Percentage Calculations**:
+  Computes attendance percentages across arrays without Python `for` loops, safely handling zero division:
+  ```python
+  summary_df["AttendancePercentage"] = np.where(
+      summary_df["TotalClasses"] > 0,
+      np.round((summary_df["PresentClasses"] / summary_df["TotalClasses"]) * 100.0, 2),
+      0.0
+  )
+  ```
+* **Descriptive Statistical Metrics**:
+  * **Mean ($\mu$)**: `np.mean(pct_values)` calculates overall class turnout.
+  * **Median ($M$)**: `np.median(pct_values)` measures central attendance tendency, unaffected by extreme defaulter outliers.
+  * **Standard Deviation ($\sigma$)**: `np.std(pct_values)` quantifies the spread/variance in attendance across the student cohort.
+  * **Min & Max**: `np.min()` and `np.max()` detect the lowest and highest attendance records.
+* **Rule-Based Multi-Class Classification**:
+  Applies `np.select()` to assign academic performance tiers:
+  ```python
+  conditions = [
+      summary_df["AttendancePercentage"] >= 90.0,
+      (summary_df["AttendancePercentage"] >= 75.0) & (summary_df["AttendancePercentage"] < 90.0),
+      (summary_df["AttendancePercentage"] >= 60.0) & (summary_df["AttendancePercentage"] < 75.0),
+      summary_df["AttendancePercentage"] < 60.0,
+  ]
+  choices = ["Excellent (≥90%)", "Good (75-89%)", "Warning (60-74%)", "Critical (<60%)"]
+  summary_df["PerformanceGrade"] = np.select(conditions, choices, default="Unclassified")
+  ```
+* **Consecutive Classes Shortage Recovery Formula**:
+  Uses NumPy's `np.ceil()` and `np.maximum()` to compute the exact number of consecutive upcoming sessions $x$ a student must attend to reach $\ge 75\%$:
+  $$\frac{P + x}{T + x} \ge 0.75 \implies x \ge 3T - 4P \implies x = \max(0, \lceil 3T - 4P \rceil)$$
+  ```python
+  classes_needed = np.maximum(0, np.ceil(3 * total_classes - 4 * present_classes).astype(int))
+  ```
+
+---
+
+### 🐼 Pandas (Data Manipulation & Pipelines)
+
+**Pandas** powers all data collection, cleaning, restructuring, aggregation, and tabular transformations.
+
+* **Data Ingestion & Type Casting**:
+  Reads CSV files and normalizes text fields (stripping whitespace, standardizing uppercase roll numbers):
+  ```python
+  df["Date"] = df["Date"].astype(str).str.strip()
+  df["StudentID"] = df["StudentID"].astype(str).str.strip().str.upper()
+  df["Name"] = df["Name"].astype(str).str.strip().str.title()
+  ```
+* **Data Cleaning & Handling Missing Values**:
+  * Removes corrupt entries missing dates or student IDs: `df.dropna(subset=["StudentID", "Date"])`
+  * Fills unrecorded or missing attendance totals with zeros: `df["PresentClasses"].fillna(0)`
+* **Entity Deduplication**:
+  Enforces uniqueness on `(Date, StudentID)` so updating a date overwrites obsolete entries cleanly without creating duplicate records:
+  ```python
+  df = df.drop_duplicates(subset=["Date", "StudentID"], keep="last")
+  ```
+* **Grouping & Aggregation**:
+  Aggregates raw daily entries to calculate total sessions held and attended:
+  ```python
+  total_marked = attendance_df.groupby("StudentID")["Date"].nunique().rename("TotalClasses")
+  present_marked = attendance_df[attendance_df["Status"] == "Present"].groupby("StudentID")["Date"].nunique().rename("PresentClasses")
+  summary_df = roster_df.merge(total_marked, on="StudentID", how="left").merge(present_marked, on="StudentID", how="left")
+  ```
+* **Date-Wise Pivot Table (Cross-Tabulation)**:
+  Transforms flat log rows into an intuitive spreadsheet-style matrix where students are rows and class dates are columns:
+  ```python
+  pivot = attendance_df.pivot_table(
+      index=["StudentID", "Name", "Department"],
+      columns="Date",
+      values="Status",
+      aggfunc="first",
+      fill_value="Not Recorded"
+  )
+  ```
+* **Relational Synchronization**:
+  When a student's roll number or name is edited, Pandas cascades the changes to all historical attendance logs in `attendance_data.csv`.
+
+---
+
+### 📊 Matplotlib (Data Visualization)
+
+**Matplotlib** provides customized, publication-quality graphical charts to reveal patterns and trends in attendance data.
+
+* **Student Attendance Percentage Bar Chart**:
+  * Draws vertical bars for each student with conditional color mapping: **Green (`#2ECC71`)** for $\ge 75\%$ and **Red (`#E74C3C`)** for shortages.
+  * Adds a benchmark threshold line using `ax.axhline(75.0, color="#C0392B", linestyle="--", linewidth=2)`.
+  * Renders exact percentage values on top of every bar using `ax.annotate()`.
+* **Department-Wise Turnout Comparison**:
+  * Bar plot comparing average attendance rates across Computer Science, Data Science, IT, and Electronics departments.
+* **Attendance Eligibility Donut Chart**:
+  * Donut chart (`ax.pie(..., wedgeprops=dict(width=0.45))`) displaying the proportion of compliant students vs. defaulters.
+* **Daily Turnout Trend Line**:
+  * Time-series plot charting overall turnout percentage fluctuations date-by-date (`ax.plot(dates, turnout, marker="o")`).
+
+---
+
+### ⚡ Streamlit (Interactive User Interface)
+
+**Streamlit** provides the reactive, browser-based user interface, converting Python scripts into a web app.
+
+* **Theme-Agnostic Containers (`st.container(border=True)`)**:
+  Renders KPI cards that automatically adjust to both **Dark Mode** and **Light Mode**.
+* **Direct Spreadsheet Editing (`st.data_editor`)**:
+  Allows users to edit the student roster or daily attendance records directly in an interactive grid with dropdown status selectors.
+* **Date Picker (`st.date_input`)**:
+  Integrated date selector with custom CSS removing unnecessary text cursors/carets and standardizing formatting (`YYYY-MM-DD`).
+* **Sidebar Navigation (`st.sidebar.radio`)**:
+  Intuitive section switching between Dashboard, Attendance Marking, Editing, Defaulters, and CSV tools.
+* **State Management & Instant Feedback**:
+  Uses `st.rerun()`, `st.success()`, `st.error()`, and `st.metric()` for real-time interface updates.
+
+---
+
+### 🐍 Python (Core Engine)
+
+* Standard library modules (`os`, `io`, `math`, `datetime`, `unittest`).
+* Object-oriented and functional modular programming.
+* Form validation, error handling, and robust exception management.
+
+---
+
+### 📄 CSV Files (Persistent Storage)
+
+* **`attendance_data.csv`**: Contains all daily attendance logs (`Date`, `StudentID`, `Name`, `Department`, `Status`).
+* **`students.csv`**: Master roster storing registered students (`StudentID`, `Name`, `Department`).
+* Provides zero-configuration local persistence that retains data after restarting the application.
+
+---
+
+## 🎯 3. Application Features
+
+| Section | Description |
 | :--- | :--- |
-| **Python** | Core language for business logic, data models, and calculations |
-| **Pandas** | Tabular data collection, cleaning, deduplication, grouping, aggregations, and pivot matrices |
-| **NumPy** | Vectorized mathematical operations, descriptive statistics (mean, median, std dev), and rule-based classifications |
-| **Matplotlib** | Data visualizations (bar charts with threshold lines, department graphs, donut charts, and turnout trends) |
-| **Streamlit** | Interactive web application framework for front-end rendering and state management |
-| **CSV** | File-based persistent storage preserving data across application restarts |
+| **📊 Dashboard & Insights** | Summary KPI cards (Total Students, Sessions, Class Average %, Defaulters count), highest/lowest attendees, statistical summary (Median, Std Dev), and 4 Matplotlib charts. |
+| **📝 Mark Daily Attendance** | Date picker to mark attendance for any date. Features **"Mark All Present"** and **"Mark All Absent"** buttons and automatic deduplication. |
+| **✏️ Edit & Update Records** | Modify student names, update roll numbers (IDs) with automatic history sync, change single/bulk attendance entries, or edit records via an Excel-like grid. |
+| **⚠️ Attendance Shortage (<75%)** | Dedicated defaulters table displaying the exact number of consecutive future classes each student must attend to reach 75%, with CSV export. |
+| **📋 Attendance Register** | Date-wise cross-tabulated Pivot Matrix view and filterable raw attendance records with student name/ID search. |
+| **👤 Student Management** | Register new students, edit existing student profiles, and validate roll number uniqueness to prevent duplicates. |
+| **📁 CSV Import & Export** | Download summary reports, raw attendance records, sample templates, or import external CSV files (Append/Overwrite). |
+| **🔬 Data Science Concepts** | Built-in interactive explainer breaking down the math, Pandas code snippets, and NumPy statistics used in the system. |
 
 ---
 
-## 🎯 3. Key Features
+## 🔬 4. Data Science Principles in Action
 
-### 📊 1. Dashboard & Insights
-* **Summary KPI Cards**: Real-time metrics showing Total Enrolled Students, Total Sessions Held, Class Average Attendance %, and Defaulters Count ($< 75\%$).
-* **Insight Highlights**: Top Student(s) with highest attendance, lowest attendance student(s), and statistical metrics (Median, Standard Deviation).
-* **Multi-Aspect Matplotlib Visualizations**:
-  * **Student Bar Chart**: Every student's attendance percentage, conditionally color-coded (Green for $\ge 75\%$, Red for $< 75\%$) with a red dashed line at the 75% threshold.
-  * **Department Comparison**: Aggregated average turnout by academic department.
-  * **Eligibility Donut Chart**: Proportion of compliant students vs. defaulters.
-  * **Daily Turnout Trend**: Line plot charting attendance fluctuations day by day.
-
-### 📝 2. Mark Daily Attendance
-* Interactive date picker with automatic ISO formatting (`YYYY-MM-DD`).
-* All enrolled students loaded dynamically with radio controls for `Present` or `Absent`.
-* Bulk action buttons: **"Mark All Present"** and **"Mark All Absent"** for single-click operations.
-* **Deduplication Engine**: Re-submitting an existing date updates records cleanly without creating duplicate rows.
-
-### ✏️ 3. Edit & Update Records (Data Management)
-* **Change Student Name & Roll Number**: Select any student from a dropdown to modify their Name, Roll Number (Student ID), or Department. All historical attendance logs automatically synchronize!
-* **Modify Daily Attendance**:
-  * *Quick Single Entry Edit*: Pick any date and student to flip their status between `Present` and `Absent`.
-  * *Bulk Day Turnout Editor*: Adjust attendance for all students on a given date at once.
-  * *Delete Attendance Date*: Easily purge accidental entries (e.g. marked on holidays).
-* **Interactive Spreadsheet Editor**:
-  * Double-click cells to edit the **Student Roster** or **Attendance Logs** directly in an Excel-like grid (`st.data_editor`) and save changes.
-
-### ⚠️ 4. Attendance Shortage (<75%) & Action Plan
-* Automatically isolates students who fail to meet the mandatory 75% requirement.
-* **Actionable Shortage Recovery Formula**:
-  $$\text{Consecutive Classes Needed} = \max(0, \lceil 3 \times \text{Total} - 4 \times \text{Present} \rceil)$$
-  Tells each student exactly how many continuous upcoming classes they must attend without an absence to regain eligibility.
-* Severity tags: *Warning* (60%–74.9%) and *Critical* (< 60%).
-* One-click download for the **Defaulters Report (CSV)**.
-
-### 📋 5. Attendance Register & Pivot Matrix
-* **Date-Wise Pivot Matrix**: Cross-tabulation viewing students as rows and class dates as columns, providing a complete attendance register grid.
-* **Filterable Raw Logs**: Search by student name/ID or filter by department and status.
-
-### 👤 6. Student Registration & Roster Management
-* Register new students with Roll Number, Full Name, and Department.
-* **Input Validation**: Enforces non-empty values and strictly prevents duplicate Roll Numbers / Student IDs.
-
-### 📁 7. CSV Import & Export
-* Download the **Student Attendance Summary (CSV)** with calculated percentages and status tags.
-* Download **Raw Attendance Logs (CSV)** and standard **CSV Templates**.
-* Upload external CSV files with **Append** or **Overwrite** options.
-* Reset button to reload the default sample dataset at any time.
-
-### 🔬 8. Built-in Data Science Explainer
-* Dedicated tab explaining how Pandas, NumPy, and Matplotlib were utilized with mathematical formulas and code snippets.
+```
+[1. Raw CSV Data] 
+       │
+       ▼
+[2. Data Cleaning & Validation] ──► dropna(), str.strip(), drop_duplicates()
+       │
+       ▼
+[3. Feature Engineering & Grouping] ──► groupby(['StudentID'])['Date'].nunique()
+       │
+       ▼
+[4. Statistical Computations] ──► np.mean(), np.median(), np.std(), 75% Formula
+       │
+       ▼
+[5. Rule-Based Classification] ──► np.select() into [Excellent, Good, Warning, Critical]
+       │
+       ▼
+[6. Visual Analytics] ──► Matplotlib Bar Charts, Threshold Lines & Donut Plots
+```
 
 ---
 
-## 🔬 4. Data Science Principles Applied
-
-```
-+-------------------------------------------------------------+
-|                     DATA SCIENCE PIPELINE                   |
-+-------------------------------------------------------------+
-| 1. DATA COLLECTION      --> CSV Ingestion & Local Storage   |
-| 2. DATA PREPROCESSING   --> Pandas Cleaning & Deduplication |
-| 3. AGGREGATIONS & EDA   --> Groupby, Pivots & Proportions   |
-| 4. STATISTICAL METRICS  --> NumPy Mean, Median, Std Dev     |
-| 5. CLASSIFICATION       --> Rule-Based 75% Eligibility Logic|
-| 6. VISUAL ANALYTICS     --> Matplotlib Charts & Thresholds  |
-+-------------------------------------------------------------+
-```
-
-### A. Data Collection & Persistence (CSV Storage)
-Structured data is stored in tabular CSV format:
-* `attendance_data.csv`: Columns `Date`, `StudentID`, `Name`, `Department`, `Status`.
-* `students.csv`: Columns `StudentID`, `Name`, `Department`.
-
-### B. Data Cleaning & Preprocessing (Pandas)
-* **Missing Value Imputation**: Uses `fillna(0)` on numerical counts and `dropna()` on primary identifiers.
-* **Text Normalization**: Trims whitespaces (`.str.strip()`), standardizes case (`.str.upper()`, `.str.title()`).
-* **Entity Integrity**: Enforces uniqueness on `(Date, StudentID)` with `drop_duplicates(keep='last')`.
-
-### C. Exploratory Data Analysis & Grouping (Pandas)
-```python
-# Aggregate attendance counts per student
-total_marked = attendance_df.groupby("StudentID")["Date"].nunique().rename("TotalClasses")
-present_marked = attendance_df[attendance_df["Status"] == "Present"].groupby("StudentID")["Date"].nunique().rename("PresentClasses")
-
-# Cross-tabulate into matrix
-pivot = attendance_df.pivot_table(index=["StudentID", "Name", "Department"], columns="Date", values="Status", aggfunc="first")
-```
-
-### D. Statistical Analysis (NumPy)
-* **Vectorized Percentage Calculation** (guarded against zero-division):
-  $$\text{Percentage} = \text{np.where}(\text{Total} > 0, \text{np.round}((\text{Present} / \text{Total}) \times 100, 2), 0.0)$$
-* **Descriptive Metrics**:
-  * **Mean ($\mu$)**: `np.mean()` measures overall class turnout.
-  * **Median ($M$)**: `np.median()` measures central tendency resistant to extreme defaulter outliers.
-  * **Standard Deviation ($\sigma$)**: `np.std()` measures variance and spread in attendance behavior across students.
-  * **Min / Max**: Identifies highest and lowest attendees.
-
-### E. Rule-Based Classification
-Implemented using `np.select` for transparent, auditable academic grading without unnecessary ML complexity:
-* $\ge 90\% \implies$ **Excellent**
-* $75\% - 89.9\% \implies$ **Good / Eligible**
-* $60\% - 74.9\% \implies$ **Warning / Needs Improvement**
-* $< 60\% \implies$ **Critical Shortage**
-
-### F. Data Visualization (Matplotlib)
-* Custom bar plots featuring a horizontal 75% threshold line via `ax.axhline(75.0, color='red', linestyle='--')`.
-* Dynamic conditional color mapping: Green (`#2ECC71`) for compliant students and Red (`#E74C3C`) for shortages.
-* Bar annotations directly displaying values above bars with `ax.annotate()`.
-
----
-
-## 📂 5. Project Architecture & Structure
+## 📂 5. Project Directory Structure
 
 ```text
 Attendance-Management-/
 │
 ├── .streamlit/
-│   └── config.toml         # Streamlit server and telemetry configuration
+│   └── config.toml         # Streamlit local configuration (telemetry disabled)
 │
-├── app.py                  # Main application: UI, data pipeline, and analytics
-├── attendance_data.csv     # Primary dataset: Daily attendance logs
-├── students.csv            # Enrolled student roster
-├── test_system.py          # Automated unit test suite
+├── app.py                  # Core application (Streamlit UI, Data Science pipeline)
+├── attendance_data.csv     # Persistent CSV file storing attendance logs
+├── students.csv            # Master roster of enrolled students
+├── test_system.py          # Automated unit test suite (8 test cases)
 ├── requirements.txt        # Python library dependencies
-├── .gitignore              # Files excluded from git tracking
-└── README.md               # Complete project documentation
+├── .gitignore              # Files excluded from version control
+├── LICENSE                 # MIT License
+└── README.md               # Comprehensive project documentation
 ```
 
 ---
 
-## 💻 6. Local Installation & Setup in VS Code
+## 💻 6. Local Installation & Setup Guide (VS Code)
+
+Follow these steps to run the application completely offline on your local machine:
 
 ### Prerequisites
-* **Python 3.9+** installed on your system.
-* **Git** installed on your system.
+* **Python 3.9 or higher** installed ([Download Python](https://www.python.org/downloads/)).
+* **VS Code** installed ([Download VS Code](https://code.visualstudio.com/)).
 
-### Step 1: Clone or Open the Repository
-In your terminal, clone the repository:
-```bash
-git clone https://github.com/tharun-bytes/Attendance-Management-.git
-cd Attendance-Management-
-```
-*(Or open the folder in **VS Code** via `File > Open Folder...`)*
+---
 
-### Step 2: Open the Built-in Terminal
-Press <kbd>Ctrl</kbd> + <kbd>`</kbd> (backtick) or go to **Terminal** > **New Terminal**.
+### Step 1: Open the Project in VS Code
+1. Open **Visual Studio Code**.
+2. Go to **File** > **Open Folder...** and select the `Attendance-Management-` folder.
 
-### Step 3: Set Up a Virtual Environment (Recommended)
+---
+
+### Step 2: Open the Integrated Terminal
+In VS Code, press <kbd>Ctrl</kbd> + <kbd>`</kbd> (backtick) or click **Terminal** > **New Terminal** in the top menu.
+
+---
+
+### Step 3: Create and Activate a Virtual Environment
+
+It is recommended to run the project within a virtual environment:
+
 * **Windows (PowerShell)**:
   ```powershell
   python -m venv .venv
   .\.venv\Scripts\Activate.ps1
   ```
-  *(If execution policy errors occur, run: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process` first)*
-* **Windows (Command Prompt)**:
+  *(If execution policies block script activation, run: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process` first)*
+
+* **Windows (Command Prompt / cmd)**:
   ```cmd
   python -m venv .venv
   .\.venv\Scripts\activate.bat
   ```
+
 * **macOS / Linux**:
   ```bash
   python3 -m venv .venv
   source .venv/bin/activate
   ```
 
+---
+
 ### Step 4: Install Dependencies
+Install all required libraries (`pandas`, `numpy`, `matplotlib`, `streamlit`) using `requirements.txt`:
+
 ```bash
 pip install -r requirements.txt
 ```
 
+---
+
 ### Step 5: Launch the Application
+Start the Streamlit local web server:
+
 ```bash
 streamlit run app.py
 ```
-The application will launch in your browser at **`http://localhost:8501`**.
+
+The application will launch and automatically open in your default browser at:
+👉 **`http://localhost:8501`**
 
 ---
 
-## ☁️ 7. Deployment Guide (Streamlit Community Cloud)
-
-You can deploy this application for free to the web using **Streamlit Community Cloud** in 3 simple steps:
-
-1. **Push your code to GitHub**:
-   Ensure your code is pushed to your GitHub repository:
-   `https://github.com/tharun-bytes/Attendance-Management-`
-2. **Sign up / Log in to Streamlit Community Cloud**:
-   Go to **[share.streamlit.io](https://share.streamlit.io/)** and sign in using your GitHub account.
-3. **Deploy the App**:
-   * Click **New app**.
-   * Select your repository: `tharun-bytes/Attendance-Management-`.
-   * Set Branch: `main`.
-   * Set Main file path: `app.py`.
-   * Click **Deploy!**
-
-Within 1–2 minutes, your Student Attendance Management System will be live with a public URL accessible from any device!
+### 🛑 How to Stop the App
+In the VS Code terminal where Streamlit is running, press <kbd>Ctrl</kbd> + <kbd>C</kbd>.
 
 ---
 
-## 🧪 8. Automated Testing & Verification
+## 🧪 7. Automated Unit Testing
 
-An automated test suite is provided in `test_system.py` covering computations, edge cases, and visualizations:
+The repository includes a comprehensive unit test suite in `test_system.py` to ensure all data science logic and plotting routines function correctly:
 
-To run all tests:
+To run all automated unit tests:
 ```bash
 python test_system.py
 ```
 
-### Test Coverage Summary:
-* ✅ `test_compute_student_summary`: Validates percentage calculations, rule-based classification, and shortage recovery formula.
-* ✅ `test_compute_class_statistics`: Validates mean, median, standard deviation, min, and max.
-* ✅ `test_matplotlib_plots_render_without_errors`: Verifies all 4 Matplotlib figures render without graphical errors.
-* ✅ `test_edge_case_zero_classes`: Confirms zero-division safety when no classes have been conducted.
-* ✅ `test_live_data_persistence`: Checks CSV loading, column validation, and deduplication.
-* ✅ `test_update_student_record_cascades`: Confirms student name and ID updates automatically synchronize with attendance logs.
-* ✅ `test_update_student_duplicate_id_rejected`: Ensures duplicate student IDs cannot be assigned.
-* ✅ `test_update_single_attendance`: Tests single attendance status modifications.
+**Expected Test Output:**
+```text
+........
+----------------------------------------------------------------------
+Ran 8 tests in 1.199s
+
+OK
+```
+
+### What the Test Suite Verifies:
+1. `test_compute_student_summary`: Validates percentage calculations and rule-based classifications.
+2. `test_compute_class_statistics`: Verifies Mean, Median, Standard Deviation, Min, and Max.
+3. `test_matplotlib_plots_render_without_errors`: Verifies all 4 Matplotlib figure objects render without errors.
+4. `test_edge_case_zero_classes`: Confirms zero-division safety when no classes have taken place.
+5. `test_live_data_persistence`: Verifies data loading, column validation, and deduplication.
+6. `test_update_student_record_cascades`: Confirms renaming student names or roll numbers updates all attendance logs.
+7. `test_update_student_duplicate_id_rejected`: Ensures duplicate roll numbers are strictly rejected.
+8. `test_update_single_attendance`: Tests single attendance status toggling.
 
 ---
 
-## 📊 9. Sample Data Specification
+## 📊 8. Sample Dataset Overview
 
-The application comes pre-populated with a realistic dataset of **14 enrolled students** across **4 academic departments** over **10 dates**:
-* **Departments**: Computer Science, Data Science, Information Technology, Electronics & Communication.
-* **Profiles**:
-  * High performers ($\ge 90\%$)
+The system includes pre-loaded, realistic sample data for **14 students across 4 departments** spanning **10 academic dates**:
+
+* **Departments Represented**:
+  * Computer Science
+  * Data Science
+  * Information Technology
+  * Electronics & Communication
+* **Diverse Attendance Profiles**:
+  * High performers ($90\% - 100\%$)
   * Satisfactory attendees ($75\% - 85\%$)
   * Borderline warning cases ($70\%$)
-  * Critical shortage defaulters ($40\% - 60\%$)
+  * Critical shortage defaulters ($25\% - 60\%$)
 
 ---
 
-## 📄 10. License & Acknowledgements
+## 📄 9. License
 
-* **License**: Open-source under the [MIT License](LICENSE).
-* **Developed With**: Python, Pandas, NumPy, Matplotlib, and Streamlit.
-* **Author**: [tharun-bytes](https://github.com/tharun-bytes)
+This project is open-source and distributed under the **[MIT License](LICENSE)**.
+
+Developed by **[tharun-bytes](https://github.com/tharun-bytes)**.
