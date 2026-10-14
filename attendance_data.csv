@@ -1,0 +1,135 @@
+Date,StudentID,Name,Department,Status
+2026-03-02,CS101,Tharun K S,Computer Science,Present
+2026-03-02,CS102,Bob Smith,Computer Science,Present
+2026-03-02,CS103,Catherine Lee,Computer Science,Absent
+2026-03-02,DS101,David Miller,Data Science,Present
+2026-03-02,DS102,Emma Watson,Data Science,Present
+2026-03-02,DS103,Frank Castle,Data Science,Absent
+2026-03-02,EC101,Jack Ryan,Electronics & Communication,Present
+2026-03-02,EC102,Karen Gillan,Electronics & Communication,Present
+2026-03-02,EC103,Luke Skywalker,Electronics & Communication,Absent
+2026-03-02,IT101,Grace Hopper,Information Technology,Present
+2026-03-02,IT102,Henry Cavill,Information Technology,Absent
+2026-03-02,IT103,Isabella Swan,Information Technology,Present
+2026-03-03,CS101,Tharun K S,Computer Science,Present
+2026-03-03,CS102,Bob Smith,Computer Science,Absent
+2026-03-03,CS103,Catherine Lee,Computer Science,Present
+2026-03-03,DS101,David Miller,Data Science,Present
+2026-03-03,DS102,Emma Watson,Data Science,Present
+2026-03-03,DS103,Frank Castle,Data Science,Present
+2026-03-03,EC101,Jack Ryan,Electronics & Communication,Present
+2026-03-03,EC102,Karen Gillan,Electronics & Communication,Present
+2026-03-03,EC103,Luke Skywalker,Electronics & Communication,Absent
+2026-03-03,IT101,Grace Hopper,Information Technology,Present
+2026-03-03,IT102,Henry Cavill,Information Technology,Present
+2026-03-03,IT103,Isabella Swan,Information Technology,Present
+2026-03-04,CS101,Tharun K S,Computer Science,Present
+2026-03-04,CS102,Bob Smith,Computer Science,Present
+2026-03-04,CS103,Catherine Lee,Computer Science,Present
+2026-03-04,DS101,David Miller,Data Science,Present
+2026-03-04,DS102,Emma Watson,Data Science,Present
+2026-03-04,DS103,Frank Castle,Data Science,Absent
+2026-03-04,EC101,Jack Ryan,Electronics & Communication,Present
+2026-03-04,EC102,Karen Gillan,Electronics & Communication,Present
+2026-03-04,EC103,Luke Skywalker,Electronics & Communication,Present
+2026-03-04,IT101,Grace Hopper,Information Technology,Present
+2026-03-04,IT102,Henry Cavill,Information Technology,Present
+2026-03-04,IT103,Isabella Swan,Information Technology,Present
+2026-03-05,CS101,Tharun K S,Computer Science,Present
+2026-03-05,CS102,Bob Smith,Computer Science,Absent
+2026-03-05,CS103,Catherine Lee,Computer Science,Present
+2026-03-05,DS101,David Miller,Data Science,Present
+2026-03-05,DS102,Emma Watson,Data Science,Present
+2026-03-05,DS103,Frank Castle,Data Science,Present
+2026-03-05,EC101,Jack Ryan,Electronics & Communication,Present
+2026-03-05,EC102,Karen Gillan,Electronics & Communication,Present
+2026-03-05,EC103,Luke Skywalker,Electronics & Communication,Absent
+2026-03-05,IT101,Grace Hopper,Information Technology,Present
+2026-03-05,IT102,Henry Cavill,Information Technology,Absent
+2026-03-05,IT103,Isabella Swan,Information Technology,Present
+2026-03-06,CS101,Tharun K S,Computer Science,Present
+2026-03-06,CS102,Bob Smith,Computer Science,Present
+2026-03-06,CS103,Catherine Lee,Computer Science,Present
+2026-03-06,DS101,David Miller,Data Science,Present
+2026-03-06,DS102,Emma Watson,Data Science,Absent
+2026-03-06,DS103,Frank Castle,Data Science,Absent
+2026-03-06,EC101,Jack Ryan,Electronics & Communication,Present
+2026-03-06,EC102,Karen Gillan,Electronics & Communication,Present
+2026-03-06,EC103,Luke Skywalker,Electronics & Communication,Absent
+2026-03-06,IT101,Grace Hopper,Information Technology,Present
+2026-03-06,IT102,Henry Cavill,Information Technology,Present
+2026-03-06,IT103,Isabella Swan,Information Technology,Absent
+2026-03-09,CS101,Tharun K S,Computer Science,Present
+2026-03-09,CS102,Bob Smith,Computer Science,Present
+2026-03-09,CS103,Catherine Lee,Computer Science,Present
+2026-03-09,DS101,David Miller,Data Science,Present
+2026-03-09,DS102,Emma Watson,Data Science,Present
+2026-03-09,DS103,Frank Castle,Data Science,Present
+2026-03-09,EC101,Jack Ryan,Electronics & Communication,Present
+2026-03-09,EC102,Karen Gillan,Electronics & Communication,Present
+2026-03-09,EC103,Luke Skywalker,Electronics & Communication,Present
+2026-03-09,IT101,Grace Hopper,Information Technology,Present
+2026-03-09,IT102,Henry Cavill,Information Technology,Present
+2026-03-09,IT103,Isabella Swan,Information Technology,Present
+2026-03-10,CS101,Tharun K S,Computer Science,Present
+2026-03-10,CS102,Bob Smith,Computer Science,Absent
+2026-03-10,CS103,Catherine Lee,Computer Science,Absent
+2026-03-10,DS101,David Miller,Data Science,Present
+2026-03-10,DS102,Emma Watson,Data Science,Present
+2026-03-10,DS103,Frank Castle,Data Science,Absent
+2026-03-10,EC101,Jack Ryan,Electronics & Communication,Present
+2026-03-10,EC102,Karen Gillan,Electronics & Communication,Present
+2026-03-10,EC103,Luke Skywalker,Electronics & Communication,Absent
+2026-03-10,IT101,Grace Hopper,Information Technology,Present
+2026-03-10,IT102,Henry Cavill,Information Technology,Present
+2026-03-10,IT103,Isabella Swan,Information Technology,Present
+2026-03-11,CS101,Tharun K S,Computer Science,Present
+2026-03-11,CS102,Bob Smith,Computer Science,Present
+2026-03-11,CS103,Catherine Lee,Computer Science,Present
+2026-03-11,DS101,David Miller,Data Science,Present
+2026-03-11,DS102,Emma Watson,Data Science,Present
+2026-03-11,DS103,Frank Castle,Data Science,Present
+2026-03-11,EC101,Jack Ryan,Electronics & Communication,Present
+2026-03-11,EC102,Karen Gillan,Electronics & Communication,Absent
+2026-03-11,EC103,Luke Skywalker,Electronics & Communication,Present
+2026-03-11,IT101,Grace Hopper,Information Technology,Present
+2026-03-11,IT102,Henry Cavill,Information Technology,Present
+2026-03-11,IT103,Isabella Swan,Information Technology,Present
+2026-03-12,CS101,Tharun K S,Computer Science,Absent
+2026-03-12,CS102,Bob Smith,Computer Science,Present
+2026-03-12,CS103,Catherine Lee,Computer Science,Present
+2026-03-12,DS101,David Miller,Data Science,Present
+2026-03-12,DS102,Emma Watson,Data Science,Present
+2026-03-12,DS103,Frank Castle,Data Science,Absent
+2026-03-12,EC101,Jack Ryan,Electronics & Communication,Absent
+2026-03-12,EC102,Karen Gillan,Electronics & Communication,Present
+2026-03-12,EC103,Luke Skywalker,Electronics & Communication,Absent
+2026-03-12,IT101,Grace Hopper,Information Technology,Present
+2026-03-12,IT102,Henry Cavill,Information Technology,Absent
+2026-03-12,IT103,Isabella Swan,Information Technology,Present
+2026-03-13,CS101,Tharun K S,Computer Science,Present
+2026-03-13,CS102,Bob Smith,Computer Science,Absent
+2026-03-13,CS103,Catherine Lee,Computer Science,Absent
+2026-03-13,DS101,David Miller,Data Science,Present
+2026-03-13,DS102,Emma Watson,Data Science,Absent
+2026-03-13,DS103,Frank Castle,Data Science,Present
+2026-03-13,EC101,Jack Ryan,Electronics & Communication,Present
+2026-03-13,EC102,Karen Gillan,Electronics & Communication,Present
+2026-03-13,EC103,Luke Skywalker,Electronics & Communication,Present
+2026-03-13,IT101,Grace Hopper,Information Technology,Present
+2026-03-13,IT102,Henry Cavill,Information Technology,Present
+2026-03-13,IT103,Isabella Swan,Information Technology,Present
+2026-10-14,CS101,Tharun K S,Computer Science,Present
+2026-10-14,CS102,Bob Smith,Computer Science,Present
+2026-10-14,CS103,Catherine Lee,Computer Science,Present
+2026-10-14,CS105,Upasana Kannan,Computer Science,Present
+2026-10-14,CS119,Yashwanth Raj.B,Computer Science,Present
+2026-10-14,DS101,David Miller,Data Science,Present
+2026-10-14,DS102,Emma Watson,Data Science,Present
+2026-10-14,DS103,Frank Castle,Data Science,Present
+2026-10-14,EC101,Jack Ryan,Electronics & Communication,Present
+2026-10-14,EC102,Karen Gillan,Electronics & Communication,Present
+2026-10-14,EC103,Luke Skywalker,Electronics & Communication,Present
+2026-10-14,IT101,Grace Hopper,Information Technology,Present
+2026-10-14,IT102,Henry Cavill,Information Technology,Present
+2026-10-14,IT103,Isabella Swan,Information Technology,Present
